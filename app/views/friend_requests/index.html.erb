@@ -1,0 +1,5 @@
+<h1>Your friend requests</h1>
+
+<% @requests.each do |request| %>
+    <%= request.sender %>
+<% end %>

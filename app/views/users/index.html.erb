@@ -1,0 +1,11 @@
+<h1>Users</h1>
+
+<% @users.each do |user| %>
+    <% next if user.fname == nil || user == current_user %>
+    <%= user.fname %> <%= user.lname %></br></br>
+    <%= form_for @request do |f| %>
+        <%= f.hidden_field :sender_id, :value => current_user.id %>
+        <%= f.hidden_field :recipient_id, :value => user.id %>
+        <%= f.submit "Send Friend Request" %></br></br>
+    <% end %>
+<% end %>
