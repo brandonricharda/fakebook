@@ -1,11 +1,62 @@
 <h1>Users</h1>
 
-<% @users.each do |user| %>
-    <% next if user.fname == nil || user == current_user %>
-    <%= user.fname %> <%= user.lname %></br></br>
-    <%= form_for @request do |f| %>
-        <%= f.hidden_field :sender_id, :value => current_user.id %>
-        <%= f.hidden_field :recipient_id, :value => user.id %>
-        <%= f.submit "Send Friend Request" %></br></br>
+<h2>Your friends:</h2>
+
+<% if current_user.friends.count > 0 %>
+    <% current_user.friends.each do |friend, request| %>
+        <%= friend %></br></br>
+        <%= form_with url: request, method: :delete do |f| %>
+            <%= f.submit "Unfriend" %></br></br>
+        <% end %>
     <% end %>
+<% else %>
+    <p>You have no friends.</p>
+<% end %>
+
+<h2>Pending friend requests you sent:</h2>
+
+<% if current_user.pending_sent_requests.count > 0 %>
+    <% current_user.pending_sent_requests.each do |request| %>
+        <%= request.recipient.name %></br></br>
+        <%= form_with url: request, method: :delete do |f| %>
+            <%= f.submit "Cancel Friend Request" %></br></br>
+        <% end %>
+    <% end %>
+<% else %>
+    <p>You have no pending sent friend requests.</p>
+<% end %>
+
+<h2>Pending friend requests you received:</h2>
+
+<% if current_user.pending_received_requests.count > 0 %>
+    <% current_user.pending_received_requests.each do |request| %>
+        <%= request.sender.name %></br></br>
+        
+        <%= form_with url: request, method: :put, remote: true do |f| %>
+            <%= f.hidden_field :id, :value => request.id %>
+            <%= f.hidden_field :status, :value => true %>
+            <%= f.submit "Accept Friend Request" %></br></br>
+        <% end %>
+
+        <%= form_with url: request, method: :delete do |f| %>
+            <%= f.submit "Decline Friend Request" %></br></br>
+        <% end %>
+    <% end %>
+<% else %>
+    <p>You have no pending received friend requests.</p>
+<% end %>
+
+<h2>Users you are not connected to yet:</h2>
+
+<% if current_user.strangers.count > 0 %>
+    <% current_user.strangers.each do |user| %>
+        <%= user.name %></br></br>
+        <%= form_for @request do |f| %>
+            <%= f.hidden_field :sender_id, :value => current_user.id %>
+            <%= f.hidden_field :recipient_id, :value => user.id %>
+            <%= f.submit "Send Friend Request" %></br></br>
+        <% end %>
+    <% end %>
+<% else %>
+    <p>There are no users you are not already connected to.</p>
 <% end %>
