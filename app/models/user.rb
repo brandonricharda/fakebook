@@ -23,8 +23,8 @@ class User < ApplicationRecord
     result = {}
     accepted_sent_requests = self.sent_requests.select { |request| request.status == true }
     accepted_received_requests = self.received_requests.select { |request| request.status == true }
-    accepted_sent_requests.each { |request| result[request.recipient.name] = request }
-    accepted_received_requests.each { |request| result[request.sender.name] = request }
+    accepted_sent_requests.each { |request| result[request.recipient] = request }
+    accepted_received_requests.each { |request| result[request.sender] = request }
     result
   end
 
@@ -32,5 +32,16 @@ class User < ApplicationRecord
     sent_request_names = self.sent_requests.map { |request| request.recipient.name }
     received_request_names = self.received_requests.map { |request| request.sender.name }
     User.all.select { |user| !sent_request_names.include?(user.name) && !received_request_names.include?(user.name) }.select { |user| user != self }
+  end
+
+  def get_posts
+    result = []
+    self.friends.each { |friend, request| friend.posts.each { |post| result << post } }
+    self.posts.each { |post| result << post }
+    result
+  end
+
+  def sorted_posts
+      get_posts.sort_by { |post| post.created_at }.reverse
   end
 end
