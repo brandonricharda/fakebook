@@ -1,0 +1,12 @@
+<h2>Your friends:</h2>
+
+<% if current_user.friends.count > 0 %>
+    <% current_user.friends.each do |friend, request| %>
+        <%= friend %></br></br>
+        <%= form_with url: request, method: :delete do |f| %>
+            <%= f.submit "Unfriend" %></br></br>
+        <% end %>
+    <% end %>
+<% else %>
+    <p>You have no friends.</p>
+<% end %>

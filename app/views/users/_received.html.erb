@@ -1,0 +1,19 @@
+<h2>Pending friend requests you received:</h2>
+
+<% if current_user.pending_received_requests.count > 0 %>
+    <% current_user.pending_received_requests.each do |request| %>
+        <%= request.sender.name %></br></br>
+        
+        <%= form_with url: request, method: :put, remote: true do |f| %>
+            <%= f.hidden_field :id, :value => request.id %>
+            <%= f.hidden_field :status, :value => true %>
+            <%= f.submit "Accept Friend Request" %></br></br>
+        <% end %>
+
+        <%= form_with url: request, method: :delete do |f| %>
+            <%= f.submit "Decline Friend Request" %></br></br>
+        <% end %>
+    <% end %>
+<% else %>
+    <p>You have no pending received friend requests.</p>
+<% end %>

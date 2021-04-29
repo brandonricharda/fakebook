@@ -1,0 +1,14 @@
+<h2>Users you are not connected to yet:</h2>
+
+<% if current_user.strangers.count > 0 %>
+    <% current_user.strangers.each do |user| %>
+        <%= user.name %></br></br>
+        <%= form_for @request do |f| %>
+            <%= f.hidden_field :sender_id, :value => current_user.id %>
+            <%= f.hidden_field :recipient_id, :value => user.id %>
+            <%= f.submit "Send Friend Request" %></br></br>
+        <% end %>
+    <% end %>
+<% else %>
+    <p>There are no users you are not already connected to.</p>
+<% end %>
