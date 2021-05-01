@@ -1,45 +1,38 @@
-<% posts.each do |post| %>
-    <div class="post">
-        <div class="main-post-content">
-            <p><%= post.author.name %></p>
-            <p><%= time_ago_in_words(post.created_at)%> ago</p>
-            <%= post.content %></br></br>
-        </div>
+<div class="timeline">
+    <% posts.each do |post| %>
+        <div class="post">
+            <div class="main-post-content">
+                <p><%= post.author.name %></p>
+                <p><b>Posted: </b><%= time_ago_in_words(post.created_at)%> ago</p>
+                <%= post.content %></br></br>
+                <% if post.author == current_user %>
+                    <%= render "shared/delete-interaction", element: post, element_name: "Post" %>
+                <% end %>
+            </div>
 
-        <div class="post-interactive-section">
-            <% if current_user.likes_include?(post) %>
-                <%= render "shared/delete-interaction", element: current_user.find_like(post), element_name: "Like" %>
-            <% else %>
-                <%= render "shared/add-interaction", element: @like, element_name: "Like" %>
-            <% end %>
-
-            <% if post.author == current_user %>
-                <%= render "shared/delete-interaction", element: post, element_name: "Post" %>
-            <% end %>
-
-            <div class="comment-form">
-                <%= form_for @comment do |f| %>
-                    <%= f.hidden_field :user_id, :value => current_user.id %>
-                    <%= f.hidden_field :post_id, :value => post.id %>
-                    <%= f.text_area :content %></br></br>
-                    <%= f.submit "Submit comment" %>
+            <div class="post-likes">
+                <% if current_user.likes_include?(post) %>
+                    <%= render "shared/delete-interaction", element: current_user.find_like(post), element_name: "Like" %>
+                <% else %>
+                    <%= render "shared/add-interaction", element: @like, element_name: "Like", post: post %>
                 <% end %>
             </div>
 
             <div class="comment-section">
                 <b><p>Comments</p></b>
+                <%= render "comments/form", post: post %>
                 <% if post.comments.length > 0 %>
                     <% post.comments.each do |comment| %>
-                        <p>Comment by <%= comment.user.name %></p>
+                        <p>Comment by: </p> <%= comment.user.name %></p>
                         <p><%= comment.content %></p>
                         <% if comment.user == current_user %>
                             <%= render "shared/delete-interaction", element: comment, element_name: "Comment" %>
                         <% end %>
                     <% end %>
                 <% else %>
-                    <p>Be the first to comment on this post</p>
+                        <p>Be the first to comment on this post!</p>
                 <% end %>
             </div>
         </div>
-    </div>
-<% end %>
+    <% end %>
+</div>
