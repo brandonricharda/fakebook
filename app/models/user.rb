@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-  has_many :posts
+  has_many :posts, :dependent => :destroy
   has_many :sent_requests, foreign_key: "sender_id", class_name: "FriendRequest", :dependent => :destroy
   has_many :received_requests, foreign_key: "recipient_id", class_name: "FriendRequest", :dependent => :destroy
-  has_many :liked_posts, foreign_key: "post_id", class_name: "Like", :dependent => :destroy
+  has_many :likes, :dependent => :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,14 +35,22 @@ class User < ApplicationRecord
     User.all.select { |user| !sent_request_names.include?(user.name) && !received_request_names.include?(user.name) }.select { |user| user != self }
   end
 
-  def get_posts
+  def timeline_posts
     result = []
     self.friends.each { |friend, request| friend.posts.each { |post| result << post } }
     self.posts.each { |post| result << post }
     result
   end
 
-  def sorted_posts
-      get_posts.sort_by { |post| post.created_at }.reverse
+  def sorted_timeline_posts
+      timeline_posts.sort_by { |post| post.created_at }.reverse
+  end
+
+  def likes_include?(post)
+    self.likes.any? { |like| like.post == post }
+  end
+
+  def find_like(post)
+    self.likes.select { |like| like.post == post }
   end
 end
