@@ -9,7 +9,7 @@ class LikesController < ApplicationController
         @like = current_user.likes.build(like_params)
         respond_to do |format|
             if @like.save
-                format.html { redirect_to posts_url, notice: "You liked a post" }
+                format.html { redirect_to request.referrer, notice: "You liked a post" }
             end
         end
     end
@@ -18,7 +18,7 @@ class LikesController < ApplicationController
         @like = Like.find(params[:id])
         @like.destroy
         respond_to do |format|
-            format.html { redirect_to posts_url, notice: "You unliked a post" }
+            format.html { redirect_to request.referrer, notice: "You unliked a post" }
         end
     end
 

@@ -14,10 +14,18 @@ class PostsController < ApplicationController
         @post = current_user.posts.build(post_params)
         respond_to do |format|
             if @post.save
-                format.html { redirect_to @post, notice: "Post successfully created" }
+                format.html { redirect_to request.referrer, notice: "Post successfully created" }
             else
-                format.html { render :new, notice: "There was an error creating your post. Please try again." }
+                format.html { redirect_to request.referrer, notice: "There was an error creating your post. Please try again." }
             end
+        end
+    end
+
+    def destroy
+        @post = Post.find(params[:id])
+        @post.destroy
+        respond_to do |format|
+            format.html { redirect_to request.referrer, notice: "You deleted a post" }
         end
     end
 

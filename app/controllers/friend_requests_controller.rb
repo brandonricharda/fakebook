@@ -13,7 +13,7 @@ class FriendRequestsController < ApplicationController
         @request = current_user.sent_requests.build(friend_request_params)
         respond_to do |format|
             if @request.save
-                format.html { redirect_to users_url, notice: "Friend request successfully sent." }
+                format.html { redirect_to request.referrer, notice: "Friend request successfully sent." }
             end
         end
     end
@@ -22,7 +22,7 @@ class FriendRequestsController < ApplicationController
         @request = FriendRequest.find(params[:id])
         @request.destroy
         respond_to do |format|
-            format.html { redirect_to users_url, notice: "Friend request successfully cancelled." }
+            format.html { redirect_to request.referrer, notice: "Friend request successfully cancelled." }
         end
     end
 
@@ -30,7 +30,7 @@ class FriendRequestsController < ApplicationController
         @request = FriendRequest.find(params[:id])
         @request.update(status: params[:status])
         respond_to do |format|
-            format.html { redirect_to users_url, notice: "Friend request successfully accepted." }
+            format.html { redirect_to request.referrer, notice: "Friend request successfully accepted." }
         end
     end
 

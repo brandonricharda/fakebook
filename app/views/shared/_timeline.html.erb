@@ -1,7 +1,8 @@
 <% posts.each do |post| %>
-    <p><%= post.author %></p>
+    <p><%= post.author.name %></p>
     <p><%= time_ago_in_words(post.created_at)%> ago</p>
     <%= post.content %></br></br>
+
     <% if current_user.likes_include?(post) %>
         <%= form_for current_user.find_like(post), method: :delete do |f| %>
             <%= f.submit "Unlike" %>
@@ -10,7 +11,13 @@
         <%= form_for @like do |f| %>
             <%= f.hidden_field :post_id, :value => post.id %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
-            <%= f.submit "Like" %>
+            <%= f.submit "Like" %></br></br>
+        <% end %>
+    <% end %>
+
+    <% if post.author == current_user %>
+        <%= form_for post, method: :delete do |f| %>
+            <%= f.submit "Delete" %>
         <% end %>
     <% end %>
 <% end %>

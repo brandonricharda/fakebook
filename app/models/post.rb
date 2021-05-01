@@ -3,6 +3,10 @@ class Post < ApplicationRecord
     has_many :likes, :dependent => :destroy
 
     def author
-        User.find(self.user_id).name
+        User.find(self.user_id)
+    end
+
+    def liked_users
+        self.likes.map { |like| like.user.name }
     end
 end
