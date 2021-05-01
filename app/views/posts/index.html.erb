@@ -1,9 +1,7 @@
+<h1>Your timeline</h1>
+
 <%= render "shared/received" %>
 
 <%= render "posts/post" %>
 
-<% current_user.sorted_posts.each do |post| %>
-    <p><%= post.author %></p>
-    <p><%= time_ago_in_words(post.created_at)%> ago</p>
-    <%= post.content %>
-<% end %>
+<%= render "shared/timeline", posts: current_user.sorted_posts %>

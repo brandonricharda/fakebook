@@ -1,0 +1,5 @@
+<% posts.each do |post| %>
+    <p><%= post.author %></p>
+    <p><%= time_ago_in_words(post.created_at)%> ago</p>
+    <%= post.content %>
+<% end %>
