@@ -2,9 +2,9 @@
 
 <% if current_user.pending_sent_requests.count > 0 %>
     <% current_user.pending_sent_requests.each do |request| %>
-        <%= request.recipient.name %></br></br>
+        <%= request.recipient.name %>
         <%= form_with url: request, method: :delete do |f| %>
-            <%= f.submit "Cancel Friend Request" %></br></br>
+            <%= f.submit "Cancel Friend Request" %>
         <% end %>
     <% end %>
 <% else %>

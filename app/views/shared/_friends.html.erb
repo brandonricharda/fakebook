@@ -2,9 +2,9 @@
 
 <% if current_user.friends.count > 0 %>
     <% current_user.friends.each do |friend, request| %>
-        <%= friend.name %></br></br>
+        <%= friend.name %>
         <%= form_with url: request, method: :delete do |f| %>
-            <%= f.submit "Unfriend" %></br></br>
+            <%= f.submit "Unfriend" %>
         <% end %>
     <% end %>
 <% else %>

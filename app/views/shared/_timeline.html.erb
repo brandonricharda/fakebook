@@ -4,13 +4,19 @@
             <div class="main-post-content">
                 <p><%= post.author.name %></p>
                 <p><b>Posted: </b><%= time_ago_in_words(post.created_at)%> ago</p>
-                <%= post.content %></br></br>
+                <%= post.content %>
                 <% if post.author == current_user %>
                     <%= render "shared/delete-interaction", element: post, element_name: "Post" %>
                 <% end %>
             </div>
 
             <div class="post-likes">
+                <% if post.likes.count > 0 %>
+                    <p>People who liked this post: </p>
+                    <% post.likes.each do |like| %>
+                        <p><%= like.user.name %></p>
+                    <% end %>
+                <% end %>
                 <% if current_user.likes_include?(post) %>
                     <%= render "shared/delete-interaction", element: current_user.find_like(post), element_name: "Like" %>
                 <% else %>

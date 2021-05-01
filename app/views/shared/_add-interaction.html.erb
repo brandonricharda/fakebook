@@ -1,5 +1,5 @@
 <%= form_for element do |f| %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :post_id, :value => post.id %>
-    <%= f.submit "Add #{element_name}" %></br></br>
+    <%= f.submit "Add #{element_name}" %>
 <% end %>
