@@ -2,7 +2,7 @@
 
 <% if current_user.pending_received_requests.count > 0 %>
     <% current_user.pending_received_requests.each do |request| %>
-        <%= request.sender.name %>
+        <%= link_to request.sender.name, request.sender %>
         
         <%= form_with url: request, method: :put, remote: true do |f| %>
             <%= f.hidden_field :id, :value => request.id %>

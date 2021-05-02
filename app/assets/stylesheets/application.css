@@ -14,6 +14,9 @@
  *= require_self
  */
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 #navbar-links {
     text-align: right;
@@ -36,7 +39,8 @@
 #navbar {
     background: #007ea7;
     display: grid;
-    grid-template-areas: "logo links";
+    grid-template-areas: "logo notice links";
+    gap: 30px;
 }
 
 #logo {
@@ -44,11 +48,18 @@
     font-size: 20px;
     margin: 20px;
     grid-area: logo;
-    vertical-align: middle;
 }
 
 #logo > a:hover {
     text-decoration: underline;
+}
+
+#status-updates {
+    grid-area: notice;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    margin: 20px;
 }
 
 #main-container {
@@ -75,6 +86,11 @@
     padding: 20px;
 }
 
+#new-post > h2 {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
 textarea {
     width: 100%;
     box-sizing: border-box;
@@ -84,4 +100,32 @@ input {
     width: 100%;
     margin-bottom: 5px;
     margin-top: 5px;
+}
+
+.post {
+    background-color: lightblue;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.post-user-identifier {
+    font-size: 20px;
+}
+
+.post-user-identifier > a, .like-user-identifier > a, .comment-user-identifier > a {
+    text-decoration: none;
+    color: black;
+}
+
+.post-user-identifier > a:hover, .like-user-identifier > a:hover, .comment-user-identifier > a:hover {
+    text-decoration: underline;
+}
+
+.post-time-identifier {
+    font-size: 15px;
+}
+
+.main-section {
+    border-bottom: 1px dashed black;
+    padding-bottom: 20px;
 }
