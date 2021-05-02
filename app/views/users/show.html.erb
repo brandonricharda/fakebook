@@ -1,3 +1,2 @@
-<h1><%= @user.name %>'s Profile</h1>
-
-<%= render "shared/timeline", posts: @posts %>
+<%= render "users/info" %>
+<div id="user-timeline"><%= render "shared/timeline", posts: @posts %></div>

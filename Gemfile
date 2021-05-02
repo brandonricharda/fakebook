@@ -27,6 +27,9 @@ gem 'devise', '~> 4.2'
 
 gem 'rexml'
 
+gem 'bootstrap-sass'
+gem 'paperclip'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

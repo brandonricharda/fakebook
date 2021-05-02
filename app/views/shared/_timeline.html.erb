@@ -1,7 +1,7 @@
 <h2>Latest posts</h2>
 <% posts.each do |post| %>
     <div class="post">
-        <div class="main-section">
+        <div class="main-post-section">
             <p class="post-user-identifier"><%= link_to post.author.name, post.author %></p>
             <p class="post-time-identifier"><%= time_ago_in_words(post.created_at)%> ago</p>
             <%= post.content %>

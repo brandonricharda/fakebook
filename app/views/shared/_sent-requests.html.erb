@@ -1,12 +1,15 @@
-<h2>Pending friend requests you sent:</h2>
-
-<% if current_user.pending_sent_requests.count > 0 %>
-    <% current_user.pending_sent_requests.each do |request| %>
-        <%= request.recipient.name %>
-        <%= form_with url: request, method: :delete do |f| %>
-            <%= f.submit "Cancel Friend Request" %>
+<div class="pending-sent-request">
+    <h2>Pending friend requests you sent:</h2>
+    <% if current_user.pending_sent_requests.count > 0 %>
+        <% current_user.pending_sent_requests.each do |request| %>
+            <div class="request-body">
+                <%= request.recipient.name %>
+                <%= form_with url: request, method: :delete do |f| %>
+                    <%= f.submit "Cancel Friend Request" %>
+                <% end %>
+            </div>
         <% end %>
+    <% else %>
+        <p>You have no pending sent friend requests.</p>
     <% end %>
-<% else %>
-    <p>You have no pending sent friend requests.</p>
-<% end %>
+</div>

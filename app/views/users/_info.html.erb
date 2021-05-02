@@ -1,3 +1,5 @@
-<h2><%= current_user.name %></h2>
-<p><%= current_user.email %></p>
-<p><b>Member since:</b> <%= current_user.created_at %></p>
+<div id="profile-info">
+    <h2><%= current_user.name %></h2>
+    <p><%= current_user.email %></p>
+    <p><b>Member since: </b><%= time_ago_in_words(current_user.created_at) %> ago</p>
+</div>
