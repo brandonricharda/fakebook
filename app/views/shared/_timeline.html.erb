@@ -1,7 +1,8 @@
 <div class="timeline">
+    <h2>Latest posts from your network</h2>
     <% posts.each do |post| %>
         <div class="post">
-            <div class="main-post-content">
+            <div class="main-section">
                 <p><%= post.author.name %></p>
                 <p><b>Posted: </b><%= time_ago_in_words(post.created_at)%> ago</p>
                 <%= post.content %>
@@ -10,7 +11,7 @@
                 <% end %>
             </div>
 
-            <div class="post-likes">
+            <div class="like-section">
                 <% if post.likes.count > 0 %>
                     <p>People who liked this post: </p>
                     <% post.likes.each do |like| %>

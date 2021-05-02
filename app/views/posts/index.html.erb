@@ -1,5 +1,6 @@
-<%= render "shared/received-requests" %>
-
-<%= render "posts/form" %>
-
-<%= render "shared/timeline", posts: current_user.sorted_timeline_posts %>
+<div id="profile-info"><%= render "users/info" %></div>
+<div id="friend-requests"><%= render "shared/received-requests" %></div>
+<div id="post-form-and-timeline">
+    <div id="new-post"><%= render "posts/form" %></div>
+    <div id="timeline"><%= render "shared/timeline", posts: current_user.sorted_timeline_posts %></div>
+</div>

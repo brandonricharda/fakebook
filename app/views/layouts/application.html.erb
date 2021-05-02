@@ -11,11 +11,19 @@
   </head>
 
   <body>
-  <div>
-    <% if user_signed_in? %>
-      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-    <% end %>
-    <%= notice %>
-    <%= yield %>
+    <div id="navbar">
+      <div id="logo"><%= link_to "Fakebook", posts_url %></div>
+      <div id="navbar-links">
+        <%= link_to "Profile", current_user %>
+        <%= link_to "Users", users_url %>
+        <% if user_signed_in? %>
+          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+        <% end %>
+      </div>
+    </div>
+    <div id="main-container">
+      <%= notice %>
+      <%= yield %>
+    </div>
   </body>
 </html>

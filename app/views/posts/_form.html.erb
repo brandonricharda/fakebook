@@ -1,7 +1,5 @@
-<div class="new-post-form">
-    <h2>Create a new post</h2>
-    <%= form_with(model: @post, local: true) do |form| %>
-        <%= form.text_area :content %>
-        <%= form.submit "Post" %>
-    <% end %>
-</div>
+<h2>Create a new post</h2>
+<%= form_with(model: @post, local: true) do |form| %>
+    <%= form.text_area :content %>
+    <%= form.submit "Post" %>
+<% end %>
