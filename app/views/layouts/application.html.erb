@@ -17,6 +17,7 @@
       <% if user_signed_in? %>
         <div id="navbar-links">
           <%= link_to "Profile", current_user %>
+          <%= link_to "Edit your profile", edit_user_registration_path %>
           <%= link_to "Users", users_url %>
           <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
         </div>

@@ -10,4 +10,8 @@ class UsersController < ApplicationController
         @post = Post.new
         @comment = Comment.new
     end
+
+    def edit
+        @user = current_user
+    end
 end

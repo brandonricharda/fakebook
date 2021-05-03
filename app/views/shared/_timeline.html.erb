@@ -1,44 +1,48 @@
 <h2>Latest posts</h2>
-<% posts.each do |post| %>
-    <div class="post">
-        <div class="main-post-section">
-            <p class="post-user-identifier"><%= link_to post.author.name, post.author %></p>
-            <p class="post-time-identifier"><%= time_ago_in_words(post.created_at)%> ago</p>
-            <%= post.content %>
-        </div>
+<% if posts.count > 0 %>
+    <% posts.each do |post| %>
+        <div class="post">
+            <div class="main-post-section">
+                <p class="post-user-identifier"><%= link_to post.author.name, post.author %></p>
+                <p class="post-time-identifier"><%= time_ago_in_words(post.created_at)%> ago</p>
+                <%= post.content %>
+            </div>
 
-        <div class="like-section">
-            <% if post.likes.count > 0 %>
-                <p>People who liked this post: </p>
-                <% post.likes.each do |like| %>
-                    <p class="like-user-identifier"><%= link_to like.user.name, like.user %></p>
-                <% end %>
-            <% end %>
-            <% if post.author == current_user %>
-                <%= render "shared/delete-interaction", element: post, element_name: "Post" %>
-            <% end %>
-            <% if current_user.likes_include?(post) %>
-                <%= render "shared/delete-interaction", element: current_user.find_like(post), element_name: "Like" %>
-            <% else %>
-                <%= render "shared/add-interaction", element: @like, element_name: "Like", post: post %>
-            <% end %>
-        </div>
-
-        <div class="comment-section">
-            <b><p>Comments</p></b>
-            <%= render "comments/form", post: post %>
-            <% if post.comments.length > 0 %>
-                <% post.comments.each do |comment| %>
-                    <p>Comment by:</p>
-                    <p class="comment-user-identifier"><%= link_to comment.user.name, comment.user %></p>
-                    <p><%= comment.content %></p>
-                    <% if comment.user == current_user %>
-                        <%= render "shared/delete-interaction", element: comment, element_name: "Comment" %>
+            <div class="like-section">
+                <% if post.likes.count > 0 %>
+                    <p>People who liked this post: </p>
+                    <% post.likes.each do |like| %>
+                        <p class="like-user-identifier"><%= link_to like.user.name, like.user %></p>
                     <% end %>
                 <% end %>
-            <% else %>
-                    <p>Be the first to comment on this post!</p>
-            <% end %>
+                <% if post.author == current_user %>
+                    <%= render "shared/delete-interaction", element: post, element_name: "Post" %>
+                <% end %>
+                <% if current_user.likes_include?(post) %>
+                    <%= render "shared/delete-interaction", element: current_user.find_like(post), element_name: "Like" %>
+                <% else %>
+                    <%= render "shared/add-interaction", element: @like, element_name: "Like", post: post %>
+                <% end %>
+            </div>
+
+            <div class="comment-section">
+                <b><p>Comments</p></b>
+                <%= render "comments/form", post: post %>
+                <% if post.comments.length > 0 %>
+                    <% post.comments.each do |comment| %>
+                        <p>Comment by:</p>
+                        <p class="comment-user-identifier"><%= link_to comment.user.name, comment.user %></p>
+                        <p><%= comment.content %></p>
+                        <% if comment.user == current_user %>
+                            <%= render "shared/delete-interaction", element: comment, element_name: "Comment" %>
+                        <% end %>
+                    <% end %>
+                <% else %>
+                        <p>Be the first to comment on this post!</p>
+                <% end %>
+            </div>
         </div>
-    </div>
+    <% end %>
+<% else %>
+    <p>No posts yet!</p>
 <% end %>

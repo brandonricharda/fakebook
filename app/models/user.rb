@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :received_requests, foreign_key: "recipient_id", class_name: "FriendRequest", :dependent => :destroy
   has_many :likes, :dependent => :destroy
   has_many :comments, :dependent => :destroy
+  has_one_attached :avatar
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

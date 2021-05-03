@@ -150,3 +150,11 @@ input {
 .pending-received-request {
     grid-area: col6;
 }
+
+.sign-in-box {
+    grid-area: col2;
+}
+
+.profile-pic {
+    margin-top: 20px;
+}
