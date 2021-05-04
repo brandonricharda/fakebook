@@ -23,7 +23,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # User authentication
-gem 'devise', '~> 4.2'
+gem 'devise', github: 'heartcombo/devise'
+gem 'omniauth-facebook'
 
 gem 'rexml'
 
