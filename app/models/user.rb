@@ -11,6 +11,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  after_create :send_welcome_email
+
   def self.from_omniauth(auth)
     name_split = auth.info.name.split(" ")
     user = User.where(email: auth.info.email).first
@@ -62,5 +64,9 @@ class User < ApplicationRecord
 
   def find_like(post)
     self.likes.select { |like| like.post == post }
+  end
+
+  def send_welcome_email
+    UserMailer.with(user: self).welcome_email.deliver_now
   end
 end
