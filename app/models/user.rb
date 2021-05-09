@@ -11,7 +11,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  after_create :send_welcome_email
+  # Pausing the welcome email for now as SendGrid suspended my account; will reactivate when it's back
+  
+  # after_create :send_welcome_email
 
   def self.from_omniauth(auth)
     name_split = auth.info.name.split(" ")
@@ -66,7 +68,7 @@ class User < ApplicationRecord
     self.likes.select { |like| like.post == post }
   end
 
-  def send_welcome_email
-    UserMailer.with(user: self).welcome_email.deliver_now
-  end
+  # def send_welcome_email
+  #   UserMailer.with(user: self).welcome_email.deliver_now
+  # end
 end
