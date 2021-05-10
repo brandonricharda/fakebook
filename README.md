@@ -32,6 +32,8 @@ If you use the above credentials, you'll be able to test the friendship-related 
 
 If you'd like to create a new account nonetheless, click **Sign up.**
 
+**Note:** Password recovery link has been eliminated since that function is useless without the mailer activated anyway (I disabled it because my SendGrid account was suspended – currently in the process of getting it back).
+
 <h2>Signup Page</h2>
 
 <a href="https://imgur.com/P1YKUxd"><img src="https://i.imgur.com/P1YKUxd.png" title="source: imgur.com" /></a>
