@@ -18,6 +18,6 @@
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end %>
 
-<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
-
-
+<% if false %>
+  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
+<% end %>
