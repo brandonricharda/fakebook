@@ -32,7 +32,7 @@ If you use the above credentials, you'll be able to test the friendship-related 
 
 If you'd like to create a new account nonetheless, click **Sign up.**
 
-**Note:** Password recovery link has been eliminated since that function is useless without the mailer activated anyway (I disabled it because my SendGrid account was suspended – currently in the process of getting it back). I did get the Mailer working with the <a href="https://github.com/ryanb/letter_opener">Letter Opener/> gem on my local machine before disabling this feature, however.
+**Note:** Password recovery link has been eliminated since that function is useless without the mailer activated anyway (I disabled it because my SendGrid account was suspended – currently in the process of getting it back). I did get the Mailer working with the Letter Opener gem before disabling this, though.
 
 <h2>Signup Page</h2>
 
