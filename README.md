@@ -83,7 +83,7 @@ If a user is not your friend and no **Friend Request** record exists between you
 
 Lastly, here's a quick walkthrough of the models I used for this project.
 
-- **User:** This was mostly Devise-generated but I added quite a few helper methods to the model (i.e. methods that make database calls to find things like the user in question's **Friends** and **Pending Received Requests.**
+- **User:** This was mostly Devise-generated but I added quite a few helper methods to the model (i.e. methods that make database calls to find things like the user in question's **Friends** and **Pending Received Requests**).
 - **Post:** User has_many of these (and they all belong_to the user)
 - **Comment:** User has many of these (and they all belong_to both the user and associated post)
 - **Like:** User has many of these (and they all belong_to both the user and associated post)
