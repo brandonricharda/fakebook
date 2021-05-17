@@ -23,12 +23,12 @@ What follows is a walkthrough of my application and how I've implemented the abo
 
 <a href="https://imgur.com/dQQZe2e"><img src="https://i.imgur.com/dQQZe2e.png" title="source: imgur.com" /></a>
 
-With the help of a Devise-generated form_for, this page lets users log in if they have existing credentials. If you'd like to follow along, use these credentials:
+With the help of a Devise-generated form_for, this page lets users log in if they have existing credentials. If you'd like to follow along in the deployed app, use these credentials:
 
 - **Email:** brandon@gmail.com
 - **Password:** Brandon123 _(case sensitive)_
 
-If you use the above credentials, you'll be able to test the friendship-related functions. If you create a completely new account, you'll be able to send friend requests to the seeded users but they obviously won't repond.
+If you use the above credentials, you'll be able to test the friendship-related functions as I've seeded a few friends and posts in the database. If you create a completely new account, you'll be able to send friend requests to the seeded users but they obviously won't repond.
 
 If you'd like to create a new account nonetheless, click **Sign up.**
 
