@@ -1,15 +1,18 @@
 class User < ApplicationRecord
-  has_many :posts, :dependent => :destroy
-  has_many :sent_requests, foreign_key: "sender_id", class_name: "FriendRequest", :dependent => :destroy
-  has_many :received_requests, foreign_key: "recipient_id", class_name: "FriendRequest", :dependent => :destroy
-  has_many :likes, :dependent => :destroy
-  has_many :comments, :dependent => :destroy
-  has_one_attached :avatar
-  devise :omniauthable, omniauth_providers: %i[facebook]
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+    has_many :posts, :dependent => :destroy
+    has_many :sent_requests, foreign_key: "sender_id", class_name: "FriendRequest", :dependent => :destroy
+    has_many :received_requests, foreign_key: "recipient_id", class_name: "FriendRequest", :dependent => :destroy
+    has_many :likes, :dependent => :destroy
+    has_many :comments, :dependent => :destroy
+    has_one_attached :avatar
+    devise :omniauthable, omniauth_providers: %i[facebook]
+    # Include default devise modules. Others available are:
+    # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+    devise :database_authenticatable, :registerable,
+            :recoverable, :rememberable, :validatable
+
+    validates :fname, presence: true
+    validates :lname, presence: true
 
   # Pausing the welcome email for now as SendGrid suspended my account; will reactivate when it's back
   
@@ -19,7 +22,7 @@ class User < ApplicationRecord
     name_split = auth.info.name.split(" ")
     user = User.where(email: auth.info.email).first
     user ||= User.create!(provider: auth.provider, uid: auth.uid, fname: name_split[0], lname: name_split[1], email: auth.info.email, password: Devise.friendly_token[0, 20])
-      user
+    user
   end
 
   def name 

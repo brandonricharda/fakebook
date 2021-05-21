@@ -47,6 +47,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'guard'
   gem 'guard-bundler', require: false
+  gem 'guard-test'
 end
 
 group :development do
