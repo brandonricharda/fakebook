@@ -58,4 +58,36 @@ RSpec.describe Like, type: :model do
 
     end
 
+    describe ".post" do
+
+        let(:user) { User.create(:fname => ENV["first_name"], :lname => ENV["last_name"], :email => ENV["valid_email"], :password => ENV["password"]) }
+
+        let(:post) { user.posts.create(:content => "This is a post") }
+
+        let(:like) { post.likes.create(:user_id => user.id) }
+
+        context "when called on like" do
+            it "returns associated post" do
+                expect(like.post).to eql post
+            end
+        end
+
+    end
+
+    describe ".user" do
+
+        let(:user) { User.create(:fname => ENV["first_name"], :lname => ENV["last_name"], :email => ENV["valid_email"], :password => ENV["password"]) }
+
+        let(:post) { user.posts.create(:content => "This is a post") }
+
+        let(:like) { post.likes.create(:user_id => user.id) }
+
+        context "when called on like" do
+            it "returns associated user" do
+                expect(like.user).to eql user
+            end
+        end
+
+    end
+
 end
