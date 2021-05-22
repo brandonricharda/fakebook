@@ -1,48 +1,50 @@
-<h2>Latest posts</h2>
 <% if posts.count > 0 %>
     <% posts.each do |post| %>
-        <div class="post">
-            <div class="main-post-section">
-                <p class="post-user-identifier"><%= link_to post.author.name, post.author %></p>
-                <p class="post-time-identifier"><%= time_ago_in_words(post.created_at)%> ago</p>
-                <%= post.content %>
-            </div>
+        <div class="box">
+            <h2 class="title is-5"><%= link_to post.author.name, post.author %></h2>
+            <p class="subtitle is-6"><%= time_ago_in_words(post.created_at)%> ago</p>
+            <p class="mb-4"><%= post.content %></p>
 
-            <div class="like-section">
-                <% if post.likes.count > 0 %>
-                    <p>People who liked this post: </p>
-                    <% post.likes.each do |like| %>
-                        <p class="like-user-identifier"><%= link_to like.user.name, like.user %></p>
-                    <% end %>
+            <% if post.likes.count > 0 %>
+                <p class="title is-6 mb-1">People Who Liked This Post:</p>
+                <% post.likes.each do |like| %>
+                    <p><%= link_to like.user.name, like.user, class: "mb-4" %></p>
                 <% end %>
+            <% end %>
+
+            <div class="columns has-text-centered mt-5">
+
+                <div class="column">
+                    <% if current_user.likes_include?(post) %>
+                        <%= render "shared/delete-interaction", element: current_user.find_like(post), element_name: "Like" %>
+                    <% else %>
+                        <%= render "shared/add-interaction", element: @like, element_name: "Like", post: post %>
+                    <% end %>
+                </div>
+
                 <% if post.author == current_user %>
-                    <%= render "shared/delete-interaction", element: post, element_name: "Post" %>
+                    <div class="column">
+                        <%= render "shared/delete-interaction", element: post, element_name: "Post" %>
+                    </div>
                 <% end %>
-                <% if current_user.likes_include?(post) %>
-                    <%= render "shared/delete-interaction", element: current_user.find_like(post), element_name: "Like" %>
-                <% else %>
-                    <%= render "shared/add-interaction", element: @like, element_name: "Like", post: post %>
-                <% end %>
+
             </div>
 
-            <div class="comment-section">
-                <b><p>Comments</p></b>
-                <%= render "comments/form", post: post %>
-                <% if post.comments.length > 0 %>
-                    <% post.comments.each do |comment| %>
-                        <p>Comment by:</p>
-                        <p class="comment-user-identifier"><%= link_to comment.user.name, comment.user %></p>
-                        <p><%= comment.content %></p>
-                        <% if comment.user == current_user %>
-                            <%= render "shared/delete-interaction", element: comment, element_name: "Comment" %>
-                        <% end %>
+            <%= render "comments/form", post: post %>
+
+            <% if post.comments.length > 0 %>
+                <% post.comments.each do |comment| %>
+                    <p class="title is-6 mb-1">Comment By:</p>
+                    <p><%= link_to comment.user.name, comment.user %></p>
+                    <p class="mb-4"><%= comment.content %></p>
+                    <% if comment.user == current_user %>
+                        <%= render "shared/delete-interaction", element: comment, element_name: "Comment" %>
                     <% end %>
-                <% else %>
-                        <p>Be the first to comment on this post!</p>
                 <% end %>
-            </div>
+            <% end %>
+
         </div>
     <% end %>
 <% else %>
-    <p>No posts yet!</p>
+    <p class="has-text-centered">No posts yet!</p>
 <% end %>

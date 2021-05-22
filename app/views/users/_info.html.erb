@@ -1,6 +1,12 @@
-<div id="profile-info">
-    <%= image_tag current_user.avatar, :size => "300x300", :class => "profile-pic" if current_user.avatar.attached? %>
-    <h2><%= current_user.name %></h2>
-    <p><%= current_user.email %></p>
-    <p><b>Member since: </b><%= time_ago_in_words(current_user.created_at) %> ago</p>
+<div class="card">
+
+    <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar, class: "card-image" %>
+    <% end %>
+
+    <div class="card-content">
+        <p class="title is-4"><%= current_user.name %></p>
+        <p class="subtitle is-6"><b>Member since: </b><%= time_ago_in_words(current_user.created_at) %> ago</p>
+    </div>
+
 </div>

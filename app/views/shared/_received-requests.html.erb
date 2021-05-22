@@ -1,22 +1,18 @@
-<div class="pending-received-request">
-    <h2>Pending friend requests you received:</h2>
-    <% if current_user.pending_received_requests.count > 0 %>
-        <% current_user.pending_received_requests.each do |request| %>
-                <div class="request-body">
-                    <p class="request-user-identifier"><%= link_to request.sender.name, request.sender %></p>
-                    
-                    <%= form_with url: request, method: :put, remote: true do |f| %>
-                        <%= f.hidden_field :id, :value => request.id %>
-                        <%= f.hidden_field :status, :value => true %>
-                        <%= f.submit "Accept Friend Request" %>
-                    <% end %>
+<% if current_user.pending_received_requests.count > 0 %>
+    <h2 class="title is-4 has-text-centered">Pending Friend Requests You've Received</h2>
+    <% current_user.pending_received_requests.each do |request| %>
+        <div class="box has-text-centered">
+            <p class="title is-5"><%= link_to request.sender.name, request.sender %></p>
 
-                    <%= form_with url: request, method: :delete do |f| %>
-                        <%= f.submit "Decline Friend Request" %>
-                    <% end %>
-                </div>
-        <% end %>
-    <% else %>
-        <p>You have no pending received friend requests.</p>
+            <%= form_with url: request, method: :put, remote: true do |f| %>
+                <%= f.hidden_field :id, :value => request.id %>
+                <%= f.hidden_field :status, :value => true %>
+                <%= f.submit "Accept Friend Request", class: "button is-success mb-4 is-fullwidth" %>
+            <% end %>
+
+            <%= form_with url: request, method: :delete do |f| %>
+                <%= f.submit "Decline Friend Request", class: "button is-danger mb-4 is-fullwidth" %>
+            <% end %>
+        </div>
     <% end %>
-</div>
+<% end %>

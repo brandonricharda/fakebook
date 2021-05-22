@@ -1,9 +1,17 @@
-<%= render "users/info" %>
+<div class="columns">
 
-<%= render "shared/friends" %>
+    <div class="column">
+        <%= render "users/info" %>
+    </div>
 
-<%= render "shared/sent-requests" %>
+    <div class="column">
+        <%= render "shared/friends" %>
+    </div>
 
-<%= render "shared/received-requests" %>
+    <div class="column">
+        <%= render "shared/sent-requests" %>
+        <%= render "shared/received-requests" %>
+        <%= render "shared/strangers" %>
+    </div>
 
-<%= render "shared/strangers" %>
+</div>

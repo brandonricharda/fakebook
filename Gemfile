@@ -34,6 +34,9 @@ gem 'rexml'
 gem 'bootstrap-sass'
 gem 'paperclip'
 
+# Styling
+gem "bulma-rails"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

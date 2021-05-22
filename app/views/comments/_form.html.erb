@@ -1,6 +1,6 @@
 <%= form_for @comment do |f| %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :post_id, :value => post.id %>
-    <%= f.text_area :content %>
-    <%= f.submit "Submit comment" %>
+    <%= f.text_area :content, class: "input mb-4", style: "resize: vertical" %>
+    <%= f.submit "Submit Comment", class: "button is-success is-fullwidth mb-4" %>
 <% end %>
