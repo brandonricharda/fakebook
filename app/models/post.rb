@@ -3,6 +3,8 @@ class Post < ApplicationRecord
     has_many :likes, :dependent => :destroy
     has_many :comments, :dependent => :destroy
 
+    validates :content, presence: true
+    
     def author
         User.find(self.user_id)
     end
