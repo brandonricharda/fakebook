@@ -48,6 +48,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-bundler', require: false
   gem 'guard-test'
+  gem 'rails-controller-testing'
 end
 
 group :development do
