@@ -5,9 +5,9 @@ This is my solution to The Odin Project's final Ruby on Rails assignment. The ob
 - Signing up with a first name, last name, email address, and password
 - Signing in with those same credentials
 - Sending, receiving, confirming, and denying friend requests
-- Creating posts
-- Adding comments on posts
-- Adding likes to posts
+- Creating posts (and deleting them)
+- Adding comments on posts (and removing them)
+- Adding likes to posts (and removing them)
 
 To learn more about the assignment, click here:
 
