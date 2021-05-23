@@ -93,7 +93,6 @@ Lastly, here's a quick walkthrough of the models I used for this project.
 
 While I'm happy enough with my app to call it a day and proceed with the remainder of The Odin Project's curriculum, there are some things I'd like to revisit down the line, including:
 
-- **Design:** There's no denying the application's visual design leaves much to be desired. I merely wanted to get it to a point where it could show off the backend's functionality. I'll revisit the design once I learn more about CSS (which is the next chapter in The Odin Project)
 - **Welcome Email Functionality:** I actually set this up using the letter_opener gem in development. When I deployed the app and attempted to send emails with SendGrid, the service suspended my account. I've submitted an email to get it back. For now, I've commented those lines out in my application.
 - **Facebook Login Functionality:** This is another feature I implemented in development. However, after deploying the app, I noticed I couldn't activate this feature without switching my Facebook app out of development mode, which required a Privacy Policy. Given this is a test app, no such policy exists and so I disabled that feature for now. At some point I may revisit and reactivate it, though.
 
