@@ -21,7 +21,7 @@ What follows is a walkthrough of my application and how I've implemented the abo
 
 <h2>Login Page</h2>
 
-<a href="https://imgur.com/dQQZe2e"><img src="https://i.imgur.com/dQQZe2e.png" title="source: imgur.com" /></a>
+<img src="https://github.com/brandonricharda/fakebook/blob/main/screenshots/login-page.png">
 
 With the help of a Devise-generated form_for, this page lets users log in if they have existing credentials. If you'd like to follow along in the deployed app, use these credentials:
 
@@ -36,13 +36,13 @@ If you'd like to create a new account nonetheless, click **Sign up.**
 
 <h2>Signup Page</h2>
 
-<a href="https://imgur.com/P1YKUxd"><img src="https://i.imgur.com/P1YKUxd.png" title="source: imgur.com" /></a>
+<img src="https://github.com/brandonricharda/fakebook/blob/main/screenshots/registration-page.png">
 
 With the help of another Devise-generated form_for, this page is where you can register for a new account. I modified the form so you can also add a **Profile picture** if you'd like.
 
 <h2>Homepage (once signed in)</h2>
 
-<a href="https://imgur.com/XQeEe4L"><img src="https://i.imgur.com/XQeEe4L.png" title="source: imgur.com" /></a>
+<img src="https://github.com/brandonricharda/fakebook/blob/main/screenshots/homepage.png">
 
 This page mimics the functionality of Facebook's main timeline page. If you used my pre-created credentials, you'll see posts from the auto-generated users (five of whom are brandon@gmail.com's friends).
 
@@ -59,19 +59,19 @@ At the top right of the homepage, you'll see any **Pending requests** you've rec
 
 <h2>Profile Page</h2>
 
-<a href="https://imgur.com/M1lSxBk"><img src="https://i.imgur.com/M1lSxBk.png" title="source: imgur.com" /></a>
+<img src="https://github.com/brandonricharda/fakebook/blob/main/screenshots/profile-page.png">
 
 Here, you'll see your logged in user's basic profile information (top left) and **Latest posts** in the center. The timeline containing your user's posts behaves virtually identically (save for the posts it pulls from) to the homepage's timeline section. In fact, these are generated using the same partial (which simply accepts posts – it doesn't care from whom – as an argument and generates the timeline view for them).
 
 <h2>Edit Your Profile Page</h2>
 
-<a href="https://imgur.com/Q10ciOr"><img src="https://i.imgur.com/Q10ciOr.png" title="source: imgur.com" /></a>
+<img src="https://github.com/brandonricharda/fakebook/blob/main/screenshots/edit-profile-page.png">
 
 This Devise-generated form lets you update or delete your user. I added functionality that lets you add a profile image here if you'd like.
 
 <h2>Users Page</h2>
 
-<a href="https://imgur.com/M15uHOA"><img src="https://i.imgur.com/M15uHOA.png" title="source: imgur.com" /></a>
+<img src="https://github.com/brandonricharda/fakebook/blob/main/screenshots/all-users-page.png">
 
 Here's where you can see all users on the platform and your relationship to them. **Friends**, **Pending Friend Requests** (sent and received), and **Strangers** will all appear in their own sections.
 
