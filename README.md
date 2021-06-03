@@ -1,6 +1,8 @@
 # README
 
-This is my solution to The Odin Project's final Ruby on Rails assignment. The objective was to create an application that mimics some of Facebook's functionality, including:
+Deployed version: https://tranquil-headland-27361.herokuapp.com/
+
+This is my solution to The Odin Project's final Ruby on Rails assignment. The objective was to create an application that mimics some of Facebook's back-end functionality, including:
 
 - Signing up with a first name, last name, email address, and password
 - Signing in with those same credentials
@@ -13,11 +15,9 @@ To learn more about the assignment, click here:
 
 https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/final-project
 
-**To play with a deployed version of the app, click here:**
+What follows is a walkthrough of my application and how I've implemented the above functionality. You can follow along using the deployed version:
 
 https://tranquil-headland-27361.herokuapp.com/
-
-What follows is a walkthrough of my application and how I've implemented the above functionality.
 
 <h2>Login Page</h2>
 
